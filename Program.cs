@@ -13,13 +13,10 @@ app.MapGet("/", () => "Hello World!");
 
 app.MapGet("/fruits", async (string color, AppDbContext db) => {
 
-	List<Fruit> fruits;
-
-	if (color != null) {
-		fruits = await db.Fruits.Where(f => f.Color == color).ToListAsync();
-	} else {
-		fruits = await db.Fruits.ToListAsync();
-	}
+	var fruits = await db.Fruits.If(
+		color != null,
+		q => q.Where(f => f.Color == color)
+	).ToListAsync();
 
 	return Results.Ok(fruits);
 });
