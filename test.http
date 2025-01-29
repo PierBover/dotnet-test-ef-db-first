@@ -21,3 +21,12 @@ GET http://{{host}}/fruits/3 HTTP/1.1
 
 ###
 DELETE http://{{host}}/fruits/2 HTTP/1.1
+
+###
+
+POST http://{{host}}/fruits HTTP/1.1
+content-type: application/json
+
+{
+	"name": "Applesdfsdfsdfsdfsd"
+}

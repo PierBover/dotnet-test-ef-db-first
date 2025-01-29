@@ -31,7 +31,7 @@ app.MapGet("/fruits/{id}", async (int id, AppDbContext db) => {
 app.MapPost("/fruits", async (Fruit fruit, AppDbContext db) => {
 	db.Fruits.Add(fruit);
 	await db.SaveChangesAsync();
-});
+}).WithParameterValidation();
 
 app.MapDelete("/fruits/{id}", async (int id, AppDbContext db) => {
 	if (await db.Fruits.FindAsync(id) is Fruit fruit) {
